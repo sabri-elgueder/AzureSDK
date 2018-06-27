@@ -1,0 +1,20 @@
+{
+    "name": "satoripophq/AzureSDK",
+    "description": "Microsoft Azure SDK for PHP",
+    "type": "library",
+    "keywords": ["Azure", "php"],
+    "homepage": "http://www.satoripop.com",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.4.0",
+        "microsoft/windowsazure": "^0.5"
+    },
+    "authors": [{
+        "name": "Sabri El Gueder",
+        "email": "sabri.elgueder@satoripop.com",
+        "homepage": "http://www.sabri-elgueder.com"
+    }],
+    "autoload": {
+        "psr-4": { "SatoripopAzure\\": "src/" }
+    }
+}
