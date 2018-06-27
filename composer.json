@@ -1,5 +1,5 @@
 {
-    "name": "satoripophq/AzureSDK",
+    "name": "satoripophq/azuresdk",
     "description": "Microsoft Azure SDK for PHP",
     "type": "library",
     "keywords": ["Azure", "php"],
