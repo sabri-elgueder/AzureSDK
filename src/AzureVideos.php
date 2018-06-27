@@ -5,9 +5,8 @@
  * @package AjaxAzureBlob
  */
 
+namespace SatoripopAzure;
 
-use Restserver\Libraries\SP_REST_Controller as RESTController;
-use Satoripop\Codes as CODES;
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Common\Internal\MediaServicesSettings;
 use WindowsAzure\Common\Internal\Utilities;

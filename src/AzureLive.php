@@ -4,6 +4,7 @@
  * @version 1.0 
  * @package AjaxAzureBlob
  */
+namespace SatoripopAzure;
 
 use WindowsAzure\Common\ServicesBuilder;
 use WindowsAzure\Common\Internal\MediaServicesSettings;

@@ -5,6 +5,9 @@
  * @package AjaxAzureBlob
  */
 
+ 
+namespace SatoripopAzure;
+
 use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
 use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 use MicrosoftAzure\Storage\Common\ServicesBuilder;

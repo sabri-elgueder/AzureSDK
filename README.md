@@ -31,7 +31,7 @@ $config['azureStorageName'] = "xxxxxx";
 $config['azureAccountKey']  = "xxxxxx";
 $config['uploadContainer']  = "mycontainer";
 
-$uploadAzure = new AjaxAzureBlob($config);
+$uploadAzure = new _AzureBlob($config);
 $result = $uploadAzure->createBlob($file,$blob_name);
 echo $result;
 $uploadAzure->downloadBlob($blob_name);
