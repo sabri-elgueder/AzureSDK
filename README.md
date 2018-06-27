@@ -13,10 +13,14 @@ http://www.satoripop.com
 Install
 -------
 
- composer.phar
+
+```
+$ composer require satoripophq/azuresdk
+```
+
 ```json
 "require": {
-    "satoripophq/AzureSDK": "1.0"
+    "satoripophq/AzureSDK": "1.3"
     }
 ```
 
@@ -65,8 +69,8 @@ Deletes a blob or blob snapshot.
 
 Note that if the snapshot entry is specified in the $options then only this blob snapshot is deleted. To delete all blob snapshots, do not set Snapshot and just set getDeleteSnaphotsOnly to true.
 
-* @param string => $container : name of the container
 * @param string => $blob : name of the blob
+* @param string => $container : name of the container
 
 
 ## copyBlob
