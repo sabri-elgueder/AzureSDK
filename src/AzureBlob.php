@@ -33,7 +33,11 @@ class AzureBlob {
     }
 
 
-	public function createCont(){       
+	public function createCont($Container = null){    
+        
+        if($Container == null) {
+            $Container = $this->uploadContainer;
+        }
         
         // Create blob REST proxy.
         $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->connectionString);
@@ -45,7 +49,7 @@ class AzureBlob {
         
         try {
             // Create container.
-            $blobRestProxy->createContainer($this->uploadContainer, $createContainerOptions);
+            $blobRestProxy->createContainer($Container, $createContainerOptions);
         }
         catch(ServiceException $e){
             // Handle exception based on error codes and messages.
@@ -61,7 +65,11 @@ class AzureBlob {
     
     
 
-    public function createBlob($file,$blob_name){
+    public function createBlob($file, $blob_name, $Container = null){
+
+        if($Container == null) {
+            $Container = $this->uploadContainer;
+        }
 
         // Create blob REST proxy.
         $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->connectionString);
@@ -74,7 +82,7 @@ class AzureBlob {
         
         try {
             //Upload blob
-            $blobRestProxy->createBlockBlob($this->uploadContainer, $blob_name, $content);
+            $blobRestProxy->createBlockBlob($Container, $blob_name, $content);
         }
         catch(ServiceException $e){
             // Handle exception based on error codes and messages.
@@ -88,6 +96,61 @@ class AzureBlob {
         return "file uploaded";
     }
 
+    public function deleteBlob($blob_name, $Container = null){
+
+        if($Container == null) {
+            $Container = $this->uploadContainer;
+        }
+
+        // Create blob REST proxy.
+        $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->connectionString);
+        
+        try {
+            //Upload blob
+            $blobRestProxy->deleteBlob($Container, $blob_name);
+        }
+        catch(ServiceException $e){
+            // Handle exception based on error codes and messages.
+            // Error codes and messages are here:
+            // http://msdn.microsoft.com/library/azure/dd179439.aspx
+            $code = $e->getCode();
+            $error_message = $e->getMessage();
+            echo $code.": ".$error_message."<br />";
+        }
+        
+        return "file deleted";
+    }
+
+
+    public function copyBlob($destinationContainer = null, $destinationBlob, $sourceContainer = null, $sourceBlob){
+
+        if($destinationContainer == null) {
+            $destinationContainer = $this->uploadContainer;
+        }
+
+        if($sourceContainer == null) {
+            $sourceContainer = $this->uploadContainer;
+        }
+
+        // Create blob REST proxy.
+        $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->connectionString);
+        
+        try {
+            //Upload blob
+            $blobRestProxy->copyBlob($destinationContainer, $destinationBlob, $sourceContainer, $sourceBlob);
+        }
+        catch(ServiceException $e){
+            // Handle exception based on error codes and messages.
+            // Error codes and messages are here:
+            // http://msdn.microsoft.com/library/azure/dd179439.aspx
+            $code = $e->getCode();
+            $error_message = $e->getMessage();
+            echo $code.": ".$error_message."<br />";
+        }
+        
+        return "file copied";
+    }
+    
 
     public function listBlobs($Container = null){
 
@@ -115,13 +178,17 @@ class AzureBlob {
     }
 
 
-    public function downloadBlob($blob_name) {
+    public function downloadBlob($blob_name, $Container = null) {
+
+        if($Container == null) {
+            $Container = $this->uploadContainer;
+        }
         
         $blobRestProxy = ServicesBuilder::getInstance()->createBlobService($this->connectionString);        
         
         try {
             // Get blob.
-            $blob = $blobRestProxy->getBlob($this->uploadContainer, $blob_name);             
+            $blob = $blobRestProxy->getBlob($Container, $blob_name);             
             $source = stream_get_contents($blob->getContentStream());            
             echo '<img src="data:image/jpeg;base64,' . base64_encode( $source ) . '" />';            
         }
