@@ -15,8 +15,8 @@ use MicrosoftAzure\Storage\Common\ServiceException;
 
 class AzureBlob {
 
-    // private $azureAccountName   = "hayyams";
-    // private $azureSecretKey     = "9ziAKP6SIrjDqxHe99vxXnB5WWNocMM4Vb+P0VgESD8=";
+    // private $azureAccountName   = "testblob";
+    // private $azureSecretKey     = "8dfd1jDqxHe99vxXnB5WWNocMM4Vb+P0VgESD8=";
 
     private $azureStorageName;
     private $azureAccountKey;
